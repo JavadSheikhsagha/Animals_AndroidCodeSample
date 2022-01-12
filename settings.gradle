@@ -1,0 +1,20 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "Basalam"
+include ':app'
+include ':domain'
+include ':domain:entity'
+include ':data'
+include ':data:models'
+include ':framework'
+include ':framework:presentation'
+include ':data:local'
+include ':data:network'
+include ':data:repository'
+include ':domain:usecase'
