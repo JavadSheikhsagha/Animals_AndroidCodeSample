@@ -21,7 +21,8 @@ class ProductsRvAdapter : RecyclerView.Adapter<ProductsRvAdapter.ProductsViewHol
 
     override fun getItemCount(): Int = productList.size
 
-    inner class ProductsViewHolder(val binding: RvProductsrvItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ProductsViewHolder(val binding: RvProductsrvItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(productModel: ProductModel) {
             binding.apply {
@@ -37,9 +38,9 @@ class ProductsRvAdapter : RecyclerView.Adapter<ProductsRvAdapter.ProductsViewHol
 
     }
 
-    fun updateList(list:List<ProductModel>) {
+    fun updateList(list: List<ProductModel>) {
         productList.clear()
         productList.addAll(list)
-        notifyItemRangeChanged(0,list.size)
+        notifyItemRangeChanged(0, list.size)
     }
 }

@@ -41,7 +41,7 @@ class MainMenuViewModel @Inject constructor(
                     .collect {
                         val data = it.data
                         if (data != null && it.errors == null) {
-                            if (it.data!!.productSearch.products.isEmpty()){
+                            if (it.data!!.productSearch.products.isEmpty()) {
                                 productsLV.postValue(State.emptyList)
                             } else {
                                 val products = ProductDtoMapper.mapFromDtoToEntity(it)

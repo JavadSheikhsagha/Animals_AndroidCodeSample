@@ -1,7 +1,7 @@
 package com.example.presentation.products.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.presentation.R
 import dagger.hilt.android.AndroidEntryPoint
 
