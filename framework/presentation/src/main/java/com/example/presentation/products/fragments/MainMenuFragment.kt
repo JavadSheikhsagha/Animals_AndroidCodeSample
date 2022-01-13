@@ -73,12 +73,15 @@ class MainMenuFragment : Fragment() {
                     Toast.makeText(requireContext(), "خطای ناشناخته", Toast.LENGTH_SHORT).show()
                 }
                 ErrorType.CACHE -> {
-//                    Toast.makeText(requireContext(), "خطای دیتابیس", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "خطای دیتابیس", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
         mainMenuViewModel.networkErrorLV.observe(viewLifecycleOwner) {
+            /**
+             * send error info to sentry or server..
+             */
             Toast.makeText(
                 requireContext(),
                 "متاسفانه مشکلی در ارتباط با سرور به وجود آمد.",

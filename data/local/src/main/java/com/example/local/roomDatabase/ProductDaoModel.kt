@@ -4,6 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * I know that if there be a model in a model(which i believe there is..),
+ *      i have to add a model as a column which annotated with *@Embedded*
+ *
+ *      Javad, 13/01/2022
+ */
+
 @Entity(tableName = "products")
 data class ProductDaoModel(
     @PrimaryKey(autoGenerate = true) val uid: Long,

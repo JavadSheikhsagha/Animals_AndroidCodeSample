@@ -16,17 +16,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideOkHttpClient(): OkHttpClient {
-//        val logging = HttpLoggingInterceptor()
-//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        val okHttpClient = OkHttpClient.Builder()
-//            .addInterceptor(logging)
-//            .build()
-//        return okHttpClient
-//    }
-
     @Provides
     @Singleton
     fun provideRetrofit(@BASE_URL baseUrl: String): ProductApiService {

@@ -3,7 +3,9 @@ package com.example.presentation.products.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.entity.models.ProductModel
+import com.example.presentation.R
 import com.example.presentation.databinding.RvProductsrvItemBinding
 
 class ProductsRvAdapter : RecyclerView.Adapter<ProductsRvAdapter.ProductsViewHolder>() {
@@ -32,6 +34,11 @@ class ProductsRvAdapter : RecyclerView.Adapter<ProductsRvAdapter.ProductsViewHol
                 txtRvProductItemWeight.text = "${productModel.weight} گرم"
                 txtRvProductItemPrice.text
 
+                Glide.with(binding.root.context)
+                    .load("https://img5.downloadha.com/hosein/files/2022/01/Top-Gear-UK-February-2022.jpg") // TODO: 1/13/2022 Fake Image URL
+                    .centerCrop()
+                    .placeholder(R.drawable.icon_mainmenufragment_basalam)
+                    .into(binding.imgMainMenuRvItemImage)
 
             }
         }
