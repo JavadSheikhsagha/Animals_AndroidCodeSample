@@ -2,8 +2,8 @@ package com.example.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.local.roomDatabase.ProductDao
-import com.example.local.roomDatabase.ProductDatabase
+import com.example.local.roomDatabase.dao.AnimalDao
+import com.example.local.roomDatabase.database.AnimalsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +19,10 @@ object CacheModule {
     @Singleton
     fun provideProductDatabase(
         @ApplicationContext context: Context
-    ): ProductDao = Room.databaseBuilder(
+    ): AnimalDao = Room.databaseBuilder(
         context,
-        ProductDatabase::class.java,
-        "products")
+        AnimalsDatabase::class.java,
+        "animals")
         .build()
         .productDao()
 }

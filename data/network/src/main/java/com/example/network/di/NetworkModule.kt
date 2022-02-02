@@ -1,6 +1,6 @@
 package com.example.network.di
 
-import com.example.network.apiServices.ProductApiService
+import com.example.network.apiServices.AnimalApiService
 import com.example.network.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -18,7 +18,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(@BASE_URL baseUrl: String): ProductApiService {
+    fun provideRetrofit(@BASE_URL baseUrl: String): AnimalApiService {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         val okHttpClient = OkHttpClient.Builder()
@@ -28,12 +28,11 @@ object NetworkModule {
             .baseUrl(baseUrl)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
-            .build().create(ProductApiService::class.java)
-
+            .build().create(AnimalApiService::class.java)
     }
 
     @Provides
     @Singleton
     @BASE_URL
-    fun provideBaseUrl() = "https://api.basalam.com/api/"
+    fun provideBaseUrl() = "https://zoo-animal-api.herokuapp.com/"
 }

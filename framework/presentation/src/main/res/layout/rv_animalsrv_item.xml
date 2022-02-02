@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="4dp"
     app:cardCornerRadius="8dp"
     android:layout_marginHorizontal="8dp"
@@ -17,49 +18,18 @@
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="190dp"
-            android:src="@drawable/icon_mainmenufragment_basalam"
+            android:src="@drawable/icon_rvproductitem_star"
             android:id="@+id/imgMainMenuRvItem_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-       <LinearLayout
-           android:background="@color/white"
-           android:padding="4dp"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           app:layout_constraintEnd_toEndOf="@id/imgMainMenuRvItem_image"
-           app:layout_constraintBottom_toBottomOf="@id/imgMainMenuRvItem_image"
-           >
-
-           <TextView
-               android:layout_marginHorizontal="4dp"
-               android:textSize="14sp"
-               android:id="@+id/txtRvProductItem_rate"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="4.2"
-               android:layout_gravity="center"
-               />
-
-           <ImageView
-               android:layout_width="24dp"
-               android:layout_height="24dp"
-               android:src="@drawable/icon_rvproductitem_star"
-               android:scaleType="centerCrop"
-               app:layout_constraintEnd_toEndOf="@id/imgMainMenuRvItem_image"
-               app:layout_constraintBottom_toBottomOf="@id/imgMainMenuRvItem_image"
-               />
-
-       </LinearLayout>
-
         <TextView
-            android:id="@+id/txtRvProductItem_title"
+            android:id="@+id/txt_RvAnimalItem_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="پیاز داغ نگینی"
+            android:text="dog"
             android:textSize="16sp"
             android:textColor="@color/gray500"
             app:layout_constraintTop_toBottomOf="@id/imgMainMenuRvItem_image"
@@ -73,43 +43,43 @@
         <TextView
             android:maxLines="1"
             android:ellipsize="end"
-            android:id="@+id/txtRvProductRv_boothTitle"
+            android:id="@+id/txt_RvAnimalRv_animalType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="غرفه سلامتی"
-            app:layout_constraintEnd_toEndOf="@+id/txtRvProductItem_title"
-            app:layout_constraintTop_toBottomOf="@id/txtRvProductItem_title" />
+            android:text="mammal"
+            app:layout_constraintEnd_toEndOf="@+id/txt_RvAnimalItem_title"
+            app:layout_constraintTop_toBottomOf="@id/txt_RvAnimalItem_title" />
 
         <TextView
             android:maxLines="1"
             android:layout_marginTop="28dp"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="16dp"
-            android:id="@+id/txtRvProductItem_price"
+            android:id="@+id/txt_rvAnimalItem_heightMax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="400,000,000 تومان"
+            tools:text="183 cm"
             android:textColor="@color/gray500"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtRvProductRv_boothTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_RvAnimalRv_animalType" />
 
         <TextView
             android:maxLines="1"
-            android:id="@+id/txtRvProductItem_weight"
+            android:id="@+id/txt_rvProductItem_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="16dp"
-            android:text="200 گرم"
+            tools:text="200 years"
             android:textColor="@color/gray300"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txtRvProductRv_boothTitle"
-            app:layout_constraintTop_toBottomOf="@+id/txtRvProductRv_boothTitle" />
+            app:layout_constraintEnd_toEndOf="@+id/txt_RvAnimalRv_animalType"
+            app:layout_constraintTop_toBottomOf="@+id/txt_RvAnimalRv_animalType" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

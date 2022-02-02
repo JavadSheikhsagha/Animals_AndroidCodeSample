@@ -2,10 +2,12 @@ package com.example.presentation.products.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.entity.models.ErrorModel
+import com.example.entity.models.MessageMainModel
 import com.example.entity.models.MessageModel
-import com.example.local.mappers.ProductDaoMapper
-import com.example.network.mappers.ProductDtoMapper
-import com.example.repository.product.ProductRepository
+import com.example.local.mappers.AnimalDaoMapper
+import com.example.network.mappers.AnimalDtoMapper
+import com.example.repository.product.AnimalRepository
 import com.example.repository.utils.ErrorCallback
 import com.example.repository.utils.ErrorType
 import com.example.repository.utils.SafeApiCall
@@ -21,10 +23,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainMenuViewModel @Inject constructor(
-    private val productRepository: ProductRepository
+    private val animalRepository: AnimalRepository
 ) : ViewModel(), ErrorCallback {
 
-    private val productsLV = MutableLiveData<State>(State.idle)
+    private val animalsLD = MutableLiveData<State>(State.idle)
     val otherErrorLV = MutableLiveData<ErrorType>()
     val networkErrorLV = MutableLiveData<MessageModel>()
 
@@ -32,59 +34,31 @@ class MainMenuViewModel @Inject constructor(
         viewModelScope.launch {
             SafeApiCall.safeApiCall(this@MainMenuViewModel) {
 
-                productRepository.getProducts()
+                animalRepository.getAnimals()
                     .flowOn(Dispatchers.IO)
                     .catch { _e ->
                         Log.i("LOG1", "fetchProductsFromServer: ${_e.message}")
                         onError(ErrorType.NETWORK)
                     }
                     .collect {
-                        val data = it.data
-                        if (data != null && it.errors == null) {
-                            if (it.data!!.productSearch.products.isEmpty()) {
-                                productsLV.postValue(State.emptyList)
+                        val data = it
+                        if (data != null) {
+                            if (it.isEmpty()) {
+                                animalsLD.postValue(State.emptyList)
                             } else {
-                                val products = ProductDtoMapper.mapFromDtoToEntity(it)
-                                productsLV.postValue(State.success(products))
+                                animalsLD.postValue(State.success(it))
                             }
                         } else {
-                            it.errors?.let {
-                                productsLV.postValue(State.failed(it))
-                            }
+                            animalsLD.postValue(State.failed("failed to connect to server.."))
                         }
                     }
             }
         }
     }
 
-    private fun fetchProductsFromCache() {
-        viewModelScope.launch {
-            productRepository.getProductsFromDatabase().flowOn(Dispatchers.IO)
-                .catch { _e ->
-                    Log.i("LOG1", "fetchProductsFromCache: ${_e.message}")
-                    onError(ErrorType.CACHE)
-                }
-                .collect {
-                    val data = it
-                    if (data != null) {
-                        val products = ProductDaoMapper.mapFromDaoToEntityList(it)
-                        productsLV.postValue(State.success(products))
-                    } else {
-                        productsLV.postValue(State.emptyList)
-                    }
-                }
-        }
-    }
-
-    fun observeProducts(): LiveData<State> {
-        viewModelScope.launch {
-            val cache = async { fetchProductsFromCache() }
-            val server = async { fetchProductsFromServer() }
-
-            cache.await()
-            server.await()
-        }
-        return productsLV
+    fun observeAnimals(): LiveData<State> {
+        fetchProductsFromServer()
+        return animalsLD
     }
 
     override fun onError(body: MessageModel) {

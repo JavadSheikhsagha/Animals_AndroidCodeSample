@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.entity.models.ProductModel
+import com.example.entity.models.AnimalModel
 import com.example.presentation.databinding.FragmentMainMenuBinding
-import com.example.presentation.products.adapters.ProductsRvAdapter
+import com.example.presentation.products.adapters.AnimalRvAdapter
 import com.example.presentation.products.viewmodels.MainMenuViewModel
 import com.example.repository.utils.ErrorType
 import com.example.repository.utils.State
@@ -24,7 +24,7 @@ class MainMenuFragment : Fragment() {
     private var _binding: FragmentMainMenuBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var productAdapter: ProductsRvAdapter
+    private lateinit var animalRvAdapter: AnimalRvAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class MainMenuFragment : Fragment() {
 
     private fun setupAdapter() {
 
-        productAdapter = ProductsRvAdapter()
+        animalRvAdapter = AnimalRvAdapter()
     }
 
     private fun observeErrors() {
@@ -58,7 +58,7 @@ class MainMenuFragment : Fragment() {
                 ErrorType.NETWORK -> {
                     Toast.makeText(
                         requireContext(),
-                        "متاسفانه مشکلی در ارتباط با سرور به وجود آمد.",
+                        "Unfortunately an error occurred",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -92,7 +92,7 @@ class MainMenuFragment : Fragment() {
 
     private fun getProducts() {
 
-        mainMenuViewModel.observeProducts().observe(
+        mainMenuViewModel.observeAnimals().observe(
             viewLifecycleOwner
         ) {
             when (it) {
@@ -110,15 +110,15 @@ class MainMenuFragment : Fragment() {
                     stateChanged(false)
                     Toast.makeText(
                         requireContext(),
-                        it.message?.get(0)?.messages?.message?.get(0)?.toString(),
+                        it.message,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
                 is State.success<*> -> {
-                    val data = it.data as List<ProductModel>
+                    val data = it.data as List<AnimalModel>
                     if (data.size > 0) {
                         stateChanged(false, true)
-                        productAdapter.updateList(data)
+                        animalRvAdapter.updateList(data)
                     } else {
                         stateChanged(false, false)
                     }
@@ -131,7 +131,7 @@ class MainMenuFragment : Fragment() {
 
         binding.rvMainMenuFragmentProductRv.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = productAdapter
+            adapter = animalRvAdapter
         }
     }
 
