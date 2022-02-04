@@ -65,15 +65,15 @@ class MainMenuFragment : Fragment() {
                 ErrorType.TIMEOUT -> {
                     Toast.makeText(
                         requireContext(),
-                        "متاسفانه ارتباط با سرور برقرار نشد.",
+                        "Unfortunately connection Lost.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
                 ErrorType.UNKNOWN -> {
-                    Toast.makeText(requireContext(), "خطای ناشناخته", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Unknown Error", Toast.LENGTH_SHORT).show()
                 }
                 ErrorType.CACHE -> {
-                    Toast.makeText(requireContext(), "خطای دیتابیس", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Database Error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -84,7 +84,7 @@ class MainMenuFragment : Fragment() {
              */
             Toast.makeText(
                 requireContext(),
-                "متاسفانه مشکلی در ارتباط با سرور به وجود آمد.",
+                "Unfortunately an error occurred",
                 Toast.LENGTH_SHORT
             ).show()
         }
