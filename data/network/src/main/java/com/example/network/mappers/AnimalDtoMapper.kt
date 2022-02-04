@@ -18,9 +18,9 @@ object AnimalDtoMapper {
                 weightMin = it.weight_min.toInt(),
                 lifespan = it.lifespan.toInt(),
                 habitat = it.habitat,
-                diet = it.diet.split(","),
+                diet = it.diet,
                 geoRange = it.geo_range,
-                imageUrl = it.image_link
+                imageUrl = it.image_link,
             )
         }
     }

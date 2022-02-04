@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.local.roomDatabase.dao.AnimalDao
 import com.example.local.roomDatabase.model.AnimalDaoModel
 
-@Database(entities = [AnimalDaoModel::class],version = 1)
+@Database(entities = [AnimalDaoModel::class],version = 2)
 abstract class AnimalsDatabase: RoomDatabase() {
-    abstract fun productDao() : AnimalDao
+    abstract fun animalDao() : AnimalDao
 }

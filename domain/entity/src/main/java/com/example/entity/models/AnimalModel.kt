@@ -11,7 +11,7 @@ data class AnimalModel(
     val weightMin:Int,
     val lifespan:Int,
     val habitat:String,
-    val diet:List<String>,
+    val diet:String,
     val geoRange:String,
     val imageUrl:String
 ) {

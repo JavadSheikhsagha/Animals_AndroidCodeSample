@@ -24,7 +24,7 @@ data class AnimalDaoModel(
     @ColumnInfo(name = "weightMin") val weightMin: Int,
     @ColumnInfo(name = "lifespan") val lifespan: Int,
     @ColumnInfo(name = "habitat") val habitat: String,
-    @ColumnInfo(name = "diet") val diet: List<String>,
+    @ColumnInfo(name = "diet") val diet: String,
     @ColumnInfo(name = "geoRange") val geoRange: String,
     @ColumnInfo(name = "imageUrl") val imageUrl: String
 ) {

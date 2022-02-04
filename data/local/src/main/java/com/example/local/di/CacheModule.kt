@@ -24,5 +24,5 @@ object CacheModule {
         AnimalsDatabase::class.java,
         "animals")
         .build()
-        .productDao()
+        .animalDao()
 }
