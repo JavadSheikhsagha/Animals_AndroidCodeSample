@@ -19,50 +19,11 @@ import javax.inject.Inject
 @HiltViewModel
 class MainMenuViewModel @Inject constructor(
     private val repository : AnimalRepository
-) : ViewModel(), ErrorCallback {
+) : ViewModel() {
 
-    private val animalsLD = MutableLiveData<State>(State.idle)
-    val otherErrorLV = MutableLiveData<ErrorType>()
-    val networkErrorLV = MutableLiveData<MessageModel>()
+    val animalsLD = repository.getAnimals().asLiveData()
+    val otherErrorLV = repository.otherErrorLV
+    val networkErrorLV = repository.networkErrorLV
 
-    private fun fetchProductsFromServer() {
-        viewModelScope.launch {
-            SafeApiCall.safeApiCall(this@MainMenuViewModel) {
-                animalsLD.postValue(State.loading)
-
-                repository.getAnimals()
-                    .flowOn(Dispatchers.IO)
-                    .catch { _e ->
-                        Log.i("LOG1", "fetchProductsFromServer: ${_e.message}")
-//                        onError(ErrorType.NETWORK)
-                        animalsLD.postValue(State.failed(_e.message.toString()))
-                    }
-                    .collect {
-                        val data = it
-                        if (data != null) {
-                            if (it.isEmpty()) {
-                                animalsLD.postValue(State.emptyList)
-                            } else {
-                                animalsLD.postValue(State.success(it))
-                            }
-                        } else {
-                            animalsLD.postValue(State.failed("failed to connect to server.."))
-                        }
-                    }
-            }
-        }
-    }
-
-    fun observeAnimals(): LiveData<State> {
-        fetchProductsFromServer()
-        return animalsLD
-    }
-
-    override fun onError(body: MessageModel) {
-        networkErrorLV.postValue(body)
-    }
-
-    override fun onError(errorType: ErrorType) {
-        otherErrorLV.postValue(errorType)
-    }
 }
+

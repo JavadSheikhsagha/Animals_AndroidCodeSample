@@ -92,35 +92,35 @@ class MainMenuFragment : Fragment() {
 
     private fun getProducts() {
 
-        mainMenuViewModel.observeAnimals().observe(
+        mainMenuViewModel.animalsLD.observe(
             viewLifecycleOwner
         ) {
             when (it) {
-                State.emptyList -> {
-                    stateChanged(false, false)
-                    Toast.makeText(requireContext(), "لیست خالی است.", Toast.LENGTH_SHORT).show()
+                is State.emptyList -> {
+                    stateChanged(isLoading = false, hasData = false)
+                    Toast.makeText(requireContext(), "the list is empty", Toast.LENGTH_SHORT).show()
                 }
-                State.idle -> {
+                is State.idle -> {
                     //do nothing for this
                 }
-                State.loading -> {
+                is State.loading -> {
                     stateChanged(true)
                 }
                 is State.failed -> {
                     stateChanged(false)
                     Toast.makeText(
                         requireContext(),
-                        it.message,
+                        it.error?.message.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
                 is State.success<*> -> {
                     val data = it.data as List<AnimalModel>
                     if (data.size > 0) {
-                        stateChanged(false, true)
+                        stateChanged(isLoading = false, hasData = true)
                         animalRvAdapter.updateList(data)
                     } else {
-                        stateChanged(false, false)
+                        stateChanged(isLoading = false, hasData = false)
                     }
                 }
             }

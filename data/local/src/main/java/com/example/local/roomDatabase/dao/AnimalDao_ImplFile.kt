@@ -5,11 +5,10 @@ import javax.inject.Inject
 
 class AnimalDao_ImplFile @Inject constructor(private val dao: AnimalDao) {
 
-    suspend fun saveAnimal(animalDaoModel: AnimalDaoModel) {
-        dao.saveAnimal(animalDaoModel)
-    }
+    suspend fun saveAnimal(animalDaoModel: AnimalDaoModel) = dao.saveAnimal(animalDaoModel)
 
-    suspend fun getAllAnimals() : List<AnimalDaoModel> {
-        return dao.getAllAnimals()
-    }
+    fun getAllAnimals() = dao.getAllAnimals()
+
+    fun deleteAllAnimals() = dao.deleteAllAnimals()
+
 }

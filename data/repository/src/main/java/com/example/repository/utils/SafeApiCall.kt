@@ -11,32 +11,32 @@ import java.net.SocketTimeoutException
 
 class SafeApiCall {
 
-    companion object {
-        suspend fun <T> safeApiCall(emitter: ErrorCallback?, response: suspend () -> T): T? {
-            return try {
-                withContext(Dispatchers.IO) {
-                    val responseBody = response.invoke()
-                    responseBody
-                }
-            } catch (e: Exception) {
-                when (e) {
-                    is HttpException -> {
-                        val message = MessageModel(
-                            listOf(e.message()),
-                            e.code()
-                        )
-                        emitter?.onError(message)
-                    }
-                    is IOException -> {
-                        emitter?.onError(ErrorType.NETWORK)
-                    }
-                    is SocketTimeoutException -> {
-                        emitter?.onError(ErrorType.TIMEOUT)
-                    }
-                    else -> emitter?.onError(ErrorType.UNKNOWN)
-                }
-                null
-            }
-        }
-    }
+//    companion object {
+//        suspend fun <T> safeApiCall(emitter: ErrorCallback?, response: suspend () -> T): T? {
+//            return try {
+//                withContext(Dispatchers.IO) {
+//                    val responseBody = response.invoke()
+//                    responseBody
+//                }
+//            } catch (e: Exception) {
+//                when (e) {
+//                    is HttpException -> {
+//                        val message = MessageModel(
+//                            listOf(e.message()),
+//                            e.code()
+//                        )
+//                        emitter?.onError(message)
+//                    }
+//                    is IOException -> {
+//                        emitter?.onError(ErrorType.NETWORK)
+//                    }
+//                    is SocketTimeoutException -> {
+//                        emitter?.onError(ErrorType.TIMEOUT)
+//                    }
+//                    else -> emitter?.onError(ErrorType.UNKNOWN)
+//                }
+//                null
+//            }
+//        }
+//    }
 }
