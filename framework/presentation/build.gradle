@@ -40,7 +40,6 @@ android {
 dependencies {
 
     implementation project(':domain:entity')
-    implementation project(':domain:usecase')
     implementation project(':data:network')
     implementation project(':data:models')
     implementation project(':data:local')

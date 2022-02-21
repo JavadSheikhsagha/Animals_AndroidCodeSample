@@ -18,7 +18,6 @@
             <option value="$PROJECT_DIR$/data/repository" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/entity" />
-            <option value="$PROJECT_DIR$/domain/usecase" />
             <option value="$PROJECT_DIR$/framework" />
             <option value="$PROJECT_DIR$/framework/presentation" />
           </set>

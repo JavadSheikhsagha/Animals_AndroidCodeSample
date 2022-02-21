@@ -1,27 +1,19 @@
 package com.example.presentation.products.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.entity.models.MessageModel
-import com.example.repository.product.AnimalRepository
-import com.example.repository.utils.ErrorCallback
-import com.example.repository.utils.ErrorType
-import com.example.repository.utils.SafeApiCall
-import com.example.repository.utils.State
+import com.example.repository.animal.AnimalRepository
+import com.example.repository.animal.AnimalRepositoryImpl
+import com.example.repository.usecases.GetAnimalUsecase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainMenuViewModel @Inject constructor(
-    private val repository : AnimalRepository
+    private val getAnimalUsecase: GetAnimalUsecase,
+    private val repository: AnimalRepositoryImpl
 ) : ViewModel() {
 
-    val animalsLD = repository.getAnimals().asLiveData()
+    val animalsLD = getAnimalUsecase.invoke().asLiveData()
     val otherErrorLV = repository.otherErrorLV
     val networkErrorLV = repository.networkErrorLV
 
