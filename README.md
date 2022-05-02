@@ -4,11 +4,11 @@
 
   technologies used in this sample code:
 
-   -Clean Architecture Multi-Module
-   -MVVM architecture
-   -Dagger(Hilt)
-   -Repository Pattern
-   -Retrofit
-   -Room database
-   -LiveData
-   -Navigation Component
+  -Clean Architecture Multi-Module
+  -MVVM architecture
+  -Dagger(Hilt)
+  -Repository Pattern
+  -Retrofit
+  -Room database
+  -LiveData
+  -Navigation Component
