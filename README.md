@@ -1,8 +1,8 @@
 # Animals_AndroidCodeSample
 
-### this is a sample MVVM project
+## This is a sample MVVM project
 
-  technologies used in this sample code:
+### technologies used in this sample code:
 
   - Clean Architecture Multi-Module
   - MVVM architecture
